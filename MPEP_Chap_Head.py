@@ -93,3 +93,5 @@ else:
     #elif difficulty == 2:
     
     #else:
+    
+    #still need to add difficulties
