@@ -55,43 +55,104 @@ else:
         for chapter in new_chap_heading_dict:
             #checking if the value has more than two words or not           
             if ' ' not in  new_chap_heading_dict[chapter]:
-                hint = ''
+                hint = f'{chapter} '
+                option = new_chap_heading_dict[chapter].split()    
+                first = random.randrange(len(new_chap_heading_dict[chapter]))
+                second = random.randrange(len(new_chap_heading_dict[chapter]))
+                #Cycle through letters and substitute the letters with dashes if necessary
+                option = new_chap_heading_dict[chapter].split() 
+                for letter in new_chap_heading_dict[chapter]:
+                    if letter == new_chap_heading_dict[chapter][first] or letter == new_chap_heading_dict[chapter][second]:
+                        hint += f"_"
+                    else:
+                        hint += f"{letter}"
+                guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                if guess != new_chap_heading_dict[chapter]:
+                    print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
+                else:
+                    print(f"That's correct! '{guess}' is the correct answer.")
+            else:
+                hint = f'{chapter} '
                 option = new_chap_heading_dict[chapter].split() 
                 if len(option) == 2:
-                    zero_or_one = random.randrange(len(option))
-                    if zero_or_one == 0:
-                        hint = f"____ {option[1]}"
+                    hint += f'____ {option[1]}'
+                    guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                    if guess != new_chap_heading_dict[chapter]:
+                        print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
                     else:
-                        hint = f"{option[0]} ____ "
+                        print(f"That's correct! '{guess}' is the correct answer.")
                 else:    
-                    first = random.randrange(len(new_chap_heading_dict[chapter]))
-                    second = random.randrange(len(new_chap_heading_dict[chapter]))
-                    hint = ''
-                    #Cycle through letters and substitute the letters with dashes if necessary
-                    option = new_chap_heading_dict[chapter].split() 
-                    for letter in new_chap_heading_dict[chapter]:
-                        if letter == new_chap_heading_dict[chapter][first] or letter == new_chap_heading_dict[chapter][second]:
-                            hint += f"_"
+                    first = random.randrange(len(option))
+                    second = random.randrange(len(option))
+                    while second == first:
+                        second = random.randrange(len(option))
+                    #cycle through words and replace specific words with blanks if necessary
+                    for word in option:
+                        if word == option[first] or word == option[second]:
+                            hint += f'_____ '
                         else:
-                            hint += f"{letter}"
-                    print(hint)
+                            hint += f'{word} ' 
+                    guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                    if guess != new_chap_heading_dict[chapter]:
+                        print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
+                    else:
+                        print(f"That's correct! '{guess}' is the correct answer.")            
+            
+    elif difficulty == '2':
+        for chapter in new_chap_heading_dict:
+            #checking if the value has more than two words or not           
+            if ' ' not in  new_chap_heading_dict[chapter]:
+                hint = f'{chapter} '
+                option = new_chap_heading_dict[chapter].split() 
+                first = random.randrange(len(new_chap_heading_dict[chapter]))
+                second = random.randrange(len(new_chap_heading_dict[chapter]))
+                #Cycle through letters and substitute the letters with dashes if necessary
+                option = new_chap_heading_dict[chapter].split() 
+                for letter in new_chap_heading_dict[chapter]:
+                    if letter == new_chap_heading_dict[chapter][first] or letter == new_chap_heading_dict[chapter][second]:
+                        hint += f"{letter}"
+                    else:
+                        hint += f"_"
+                guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                if guess != new_chap_heading_dict[chapter]:
+                    print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
+                else:
+                    print(f"That's correct! '{guess}' is the correct answer.")
             else:
                 option = new_chap_heading_dict[chapter].split() 
-                first = random.randrange(len(option))
-                second = random.randrange(len(option))
-                while second == first:
-                    second = random.randrange(len(option))
-                hint = ""
-                #cycle through words and replace specific words with blanks if necessary
-                for word in option:
-                    if word == option[first] or word == option[second]:
-                        hint += f'_____ '
+                hint = f'{chapter} '
+                if len(option) == 2:
+                    hint += f'{option[0]} ____'
+                    guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                    if guess != new_chap_heading_dict[chapter]:
+                        print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
                     else:
-                        hint += f'{word} ' 
-                print(hint)             
-            
-    #elif difficulty == 2:
+                        print(f"That's correct! '{guess}' is the correct answer.")
+                else:
+                    first = random.randrange(len(option))
+                    second = random.randrange(len(option))
+                    while second == first:
+                        second = random.randrange(len(option))
+                    #cycle through words and replace specific words with blanks if necessary
+                    for word in option:
+                        if word == option[first] or word == option[second]:
+                            hint += f'{word} '
+                        else:
+                            hint += f'____ '
+                    guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+                    if guess != new_chap_heading_dict[chapter]:
+                        print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
+                    else:
+                        print(f"That's correct! '{guess}' is the correct answer.")
+    else:
+        for chapter in new_chap_heading_dict:
+            hint = f'{chapter}'
+            option = new_chap_heading_dict[chapter].split()
+            for word in option:
+                hint += f'____ '
+            guess = input(f'Your hint is: {hint}; What is the complete answer? ')
+            if guess != new_chap_heading_dict[chapter]:
+                print(f'Sorry "{guess}" is not the correct answer, the correct answer is "{new_chap_heading_dict[chapter]}"')
+            else:
+                print(f"That's correct! '{guess}' is the correct answer.")
     
-    #else:
-    
-    #still need to add difficulties
