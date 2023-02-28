@@ -1,3 +1,5 @@
+#This program cycled through a large number of png files and converted them to text files for further manipulation. 
+
 
 import cv2
 import pytesseract
